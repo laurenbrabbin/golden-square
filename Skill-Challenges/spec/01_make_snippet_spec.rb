@@ -1,4 +1,4 @@
-require "make_snippet"
+require "01_make_snippet"
 
 RSpec.describe "make_snippet method" do
   context "given an empty string" do 

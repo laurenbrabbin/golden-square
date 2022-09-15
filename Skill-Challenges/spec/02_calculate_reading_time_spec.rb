@@ -1,4 +1,4 @@
-require "calculate_reading_time"
+require "02_calculate_reading_time"
 
 RSpec.describe "calculate_reading_time method" do
   context "given an empty string" do
