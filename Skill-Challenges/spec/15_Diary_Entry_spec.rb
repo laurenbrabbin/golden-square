@@ -29,33 +29,4 @@ RSpec.describe DiaryEntry do
       expect{ monday_entry.reading_time(0) }.to raise_error "Please enter a number greater than 0"
     end
   end
-  describe "#reading_chunk" do
-    context "with a text readable in the given minutes" do
-      xit "returns full contents" do
-        diary_entry = DiaryEntry.new("my_title", "one two three")
-        expect(diary_entry.reading_chunk(100, 2)).to eq "one two three"
-      end
-    end
-    context "contents unreadable within the time" do
-      xit "returns only a section of the contents" do
-        diary_entry = DiaryEntry.new("my_title", "one two three four five")
-        expect(diary_entry.reading_chunk(1, 3)).to eq "one two three"
-      end
-    end
-      xit "restarts after reading the whole contents" do 
-        diary_entry = DiaryEntry.new("my_title", "one two three")
-        diary_entry.reading_chunk(2, 1)
-        diary_entry.reading_chunk(2, 1)
-        chunk = diary_entry.reading_chunk(2, 1)
-        expect(chunk).to eq "one two"
-      end
-
-    xit "restarts if it finishes exactly on the end" do
-      diary_entry = DiaryEntry.new("my_title", "one two three")
-      diary_entry.reading_chunk(2, 1)
-      diary_entry.reading_chunk(1, 1)
-      chunk = diary_entry.reading_chunk(2, 1)
-      expect(chunk).to eq "one two"
-    end
-  end
 end
