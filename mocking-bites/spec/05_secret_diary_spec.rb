@@ -18,7 +18,7 @@ RSpec.describe SecretDiary do
   end
   context "when relocked" do
     it "fails and does not read the diary" do
-      fake_entry = double(:fake_entry, contents: "I went to the shop")
+      fake_entry = double(:fake_entry, contents: "I went to the shop", read:"I went to the shop")
       laurens_diary = SecretDiary.new(fake_entry)
       laurens_diary.unlock
       laurens_diary.lock

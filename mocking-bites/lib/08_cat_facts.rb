@@ -21,7 +21,8 @@ class CatFacts
   end
 end
 
-require 'net/http'
-cat_fact = CatFacts.new(Net::HTTP)
-p cat_fact.provide_fact
-p cat_fact.provide_length
+#to test
+  #require 'net/http'
+  #cat_fact = CatFacts.new(Net::HTTP)
+  #p cat_fact.provide_fact
+  #p cat_fact.provide_length

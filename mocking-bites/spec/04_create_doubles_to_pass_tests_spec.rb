@@ -5,7 +5,7 @@ RSpec.describe "doubles challenge" do
     
     allow(task_list).to receive(:count).and_return 1
     allow(task_list).to receive(:clear).and_return :success
-    allow(task_list).to receive(:list).and_return [task]
+    expect(task_list).to receive(:list).and_return [task] #can either do expect or allow
 
     # Don't edit below
     task_list.add(task)

@@ -1,7 +1,7 @@
 class SecretDiary
   def initialize(diary) 
     @locked_content = diary
-    @unlocked_content = ""
+    @unlocked_content = "" #could also do true and false
   end
 
   def read
