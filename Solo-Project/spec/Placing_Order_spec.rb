@@ -18,14 +18,14 @@ RSpec.describe PlacingOrder do
       laurens_order.select_dish("soup")
       expect(laurens_order.view_selected_dishes).to eq "1x pizza: £1.50, 1x soup: £2.99"
     end
-    it "returns the stored selected meal" do
+    it "returns recipt of the selected meal" do
       cafe_menu = double :cafe_menu
       expect(cafe_menu).to receive(:find_meal).with("pizza").and_return(["pizza", 1.5])
       expect(cafe_menu).to receive(:find_meal).with("soup").and_return(["soup", 2.99])
       laurens_order = PlacingOrder.new(cafe_menu)
       laurens_order.select_dish("pizza")
       laurens_order.select_dish("soup")
-      expect(laurens_order.dishes).to eq [["pizza", 1.5], ["soup", 2.99]]
+      expect(laurens_order.recipt).to eq "Recipt: 1x pizza: £1.50, 1x soup: £2.99. Total: £4.49"
     end
   end
 end

@@ -6,7 +6,7 @@ class TakeAwayScreen
   def initialize(terminal, menu)
     @menu = menu
     @terminal = terminal
-    @user_selection = []
+    @customer_order = []
   end
 
   def run 
@@ -25,10 +25,11 @@ class TakeAwayScreen
     @terminal.puts ""
     @terminal.puts "How can I help you today"
     @terminal.puts ""
-    @terminal.puts "1. I would like to see the menu"
-    @terminal.puts "2. I would like to add meals to my basket"
-    @terminal.puts "3. I would like to checkout and get a recipt"
-    @terminal.puts "4. I would like to exit"
+    @terminal.puts "1. View Menu"
+    @terminal.puts "2. Add Meals to Basket"
+    @terminal.puts "3. Review my Order"
+    @terminal.puts "4. Confirm Order"
+    @terminal.puts "5. I would like to exit"
     @terminal.puts ""
   end
 
@@ -39,8 +40,10 @@ class TakeAwayScreen
     when "2"
       selecting_dishes
     when "3"
-      checkout
+      review_order
     when "4"
+      exit
+    when "5"
       exit
     else 
       @terminal.puts "please ensure a number 1-4 is entered"
@@ -61,7 +64,7 @@ private
     
     loop do 
       puts ""
-      puts "please enter a meal to add to the basked"
+      puts "please enter a meal to add to the basket"
       user_input = @terminal.gets.chomp
 
       if user_input == "view"
@@ -76,15 +79,12 @@ private
       end
     end 
 
-    return @user_selection = customer_order
+    return @customer_order = customer_order
   end
 
-  def checkout
-    confirm_order = ConfirmOrder.new(@user_selection)
+  def review_order
     @terminal.puts ""
-    @terminal.puts "Thank you for shopping with us today please see your recipt below..."
-    @terminal.puts ""
-    @terminal.puts confirm_order.recipt
+    @terminal.puts @customer_order.recipt
   end
 end
 

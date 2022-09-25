@@ -13,8 +13,9 @@ class PlacingOrder
     format_selected_dishes
   end
 
-  def dishes
-    @selected_dishes
+  def recipt
+    fail "no dishes have been selected" if @selected_dishes == []
+    return "Recipt: #{view_selected_dishes}. Total: £#{'%.2f' % total}"
   end
 
   private
@@ -29,6 +30,10 @@ class PlacingOrder
 
   def amount_in_pounds(amount)
     return "£#{'%.2f' % (amount.to_f)}"
+  end
+
+  def total
+    return @selected_dishes.sum{|dish| dish[1] }
   end
 end
 
