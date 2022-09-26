@@ -1,6 +1,7 @@
 require_relative "../lib/menu.rb"
 require_relative "../lib/placing_order.rb"
 require_relative "../lib/confirm_order.rb"
+require 'twilio-ruby'
 
 class TakeAwayScreen
   def initialize(terminal, menu)
@@ -18,18 +19,18 @@ class TakeAwayScreen
   end
 
   def welcome_user
-    @terminal.puts "welcome to our cafe"
+    @terminal.puts "Welcome to our cafe!"
   end
 
   def print_interface
     @terminal.puts ""
-    @terminal.puts "How can I help you today"
+    @terminal.puts "How can I help you today?"
     @terminal.puts ""
     @terminal.puts "1. View Menu"
     @terminal.puts "2. Add Meals to Basket"
     @terminal.puts "3. Review my Order"
     @terminal.puts "4. Confirm Order"
-    @terminal.puts "5. I would like to exit"
+    @terminal.puts "5. Exit"
     @terminal.puts ""
   end
 
@@ -42,7 +43,7 @@ class TakeAwayScreen
     when "3"
       review_order
     when "4"
-      exit
+      confirm_order
     when "5"
       exit
     else 
@@ -83,8 +84,20 @@ private
   end
 
   def review_order
-    @terminal.puts ""
-    @terminal.puts @customer_order.recipt
+    if @customer_order == []
+      @terminal.puts ""
+      @terminal.puts "Your basket is empty"
+    else
+      @terminal.puts ""
+      @terminal.puts @customer_order.recipt
+    end
+  end
+
+  def confirm_order
+    fail "Nothing has been added to the basket" if @customer_order == []
+    puts "Thank you for ordering with us! Please enter your telephone number to recieve a text with delivery time confirmation"
+    customer_number = @terminal.gets.chomp
+    ConfirmOrder.new(customer_number).send_text
   end
 end
 
